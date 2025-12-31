@@ -1,12 +1,12 @@
-extends CharacterBody2D
+class_name  Orb extends CharacterBody2D
 
 signal desolve
 
-@export var move_speed := 120.0
-@export var move_time := 1.2
-@export var aim_offset_deg := 25.0
-@export var burst_count := 12
-@export var bullet_scene: PackedScene
+const MOVE_SPEED := 120.0
+const MAX_MOVE_TIME := 3.0
+const AIM_OFFSET_DEG := 25.0
+const BURST_COUNT := 12
+const BULLET_SCENE := preload("res://Object/orb_bullet.tscn")
 
 var apathy : Apathy
 var direction: Vector2
@@ -14,7 +14,7 @@ var stopped := false
 var was_hit := false
 var player: Node2D
 
-@onready var move_timer: Timer = $MoveTimer
+@onready var move_timer : Timer = $MoveTimer
 @onready var burst_timer: Timer = $BurstTimer
 
 
@@ -24,9 +24,9 @@ func _ready():
 	player = get_tree().get_first_node_in_group("player")
 	_set_aimed_direction()
 
-	velocity = direction * move_speed
+	velocity = direction * MOVE_SPEED
 
-	move_timer.wait_time = move_time
+	move_timer.wait_time = randf_range(1.2 ,MAX_MOVE_TIME)
 	move_timer.timeout.connect(_stop_orb)
 	move_timer.start()
 
@@ -50,7 +50,7 @@ func _set_aimed_direction():
 
 	var to_player := (player.global_position - global_position).normalized()
 	var offset_rad := deg_to_rad(
-		randf_range(-aim_offset_deg, aim_offset_deg)
+		randf_range(-AIM_OFFSET_DEG, AIM_OFFSET_DEG)
 	)
 
 	direction = to_player.rotated(offset_rad)
@@ -81,13 +81,14 @@ func _resolve():
 		return
 
 	await _fire_burst()
+	emit_signal("desolve")
 	queue_free()
 
 func _fire_burst():
-	for i in burst_count:
+	for i in BURST_COUNT:
 		#await get_tree().create_timer(0.05).timeout
-		var bullet = bullet_scene.instantiate()
-		var angle := TAU * i / burst_count
+		var bullet = BULLET_SCENE.instantiate()
+		var angle := TAU * i / BURST_COUNT
 
 		bullet.global_position = global_position
 		bullet.direction = Vector2(cos(angle), sin(angle))

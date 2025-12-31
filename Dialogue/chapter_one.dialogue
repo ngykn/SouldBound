@@ -1,0 +1,49 @@
+~ mc_awoke
+{{GlobalManager.player_name}} : Where... is this?
+{{GlobalManager.player_name}} : ...
+=> END
+
+~ the_strange_man
+???? : You’re awake already...
+???? : Haa...
+???? : That’s rare.
+{{GlobalManager.player_name}} : Where am I?
+{{GlobalManager.player_name}} : Who are you?
+???? : Names don’t matter much here.
+???? : This place forgets them.
+???? : You’re in a world where emotions lost their purpose.
+???? : Most who fall here stop walking.
+
+~ strange_man_question
+{{GlobalManager.player_name}} : Why are you still here?
+???? : ...
+???? : Because I didn’t fight.
+???? : And I didn’t care enough to die.
+
+~ strange_man_warning
+???? : You won’t be alone for long.
+???? : Something tired will find you.
+{{GlobalManager.player_name}} : A monster?
+???? : ...
+???? : Worse.
+???? : Something that doesn’t want to win.
+
+~ strange_man_combat_hint
+???? : It won’t rush you.
+???? : It won’t hate you.
+???? : It’ll ask why you’re still moving.
+???? : When you meet it...
+???? : Don’t fight like you want to survive.
+???? : Fight like you want to prove something.
+
+~ strange_man_mechanics_hint
+???? : Its attacks are slow.
+???? : Like it doesn’t care if they hit.
+???? : Don’t panic.
+???? : Watch.
+???? : Move.
+???? : Endure.
+
+~ apathy_intro
+???? : ...
+=> END

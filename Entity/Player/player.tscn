@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://drlfriyhb4cre"]
+[gd_scene load_steps=31 format=3 uid="uid://drlfriyhb4cre"]
 
 [ext_resource type="Script" path="res://Script/Player/player.gd" id="1_n3tpv"]
 [ext_resource type="Script" path="res://Script/Player/AnimationPlayer.gd" id="2_4uvwk"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cf023640268yo" path="res://Place Holder Art/Player/Walk_Side-Sheet.png" id="10_q1f1i"]
 [ext_resource type="Texture2D" uid="uid://banj3cpmjs6hy" path="res://Place Holder Art/Player/Walk_Up-Sheet.png" id="11_t2efs"]
 [ext_resource type="Texture2D" uid="uid://ce7u71p2bxn31" path="res://Assets/Environment/Props/Shadows.png" id="12_jgktu"]
+[ext_resource type="PackedScene" uid="uid://dbce6q7n3l7q5" path="res://Overlap/interaction_area.tscn" id="13_xn1ro"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d854q"]
 
@@ -574,10 +575,13 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0, 0.5)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_hq5gu"]
+radius = 16.1245
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 material = SubResource("ShaderMaterial_d854q")
 collision_layer = 2
-collision_mask = 5
+collision_mask = 21
 script = ExtResource("1_n3tpv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -606,3 +610,13 @@ texture = SubResource("AtlasTexture_upe6s")
 visible = false
 texture = SubResource("GradientTexture2D_2fbhm")
 texture_scale = 1.5
+
+[node name="InteractionArea" parent="." instance=ExtResource("13_xn1ro")]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+y_sort_enabled = true
+position = Vector2(0, 6)
+shape = SubResource("CircleShape2D_hq5gu")
+debug_color = Color(0.992157, 0, 0.227451, 0.419608)

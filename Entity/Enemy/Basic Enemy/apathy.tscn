@@ -8,6 +8,7 @@
 radius = 6.0
 
 [node name="Apathy" type="CharacterBody2D"]
+y_sort_enabled = true
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_h4p1o")
@@ -24,3 +25,5 @@ position = Vector2(0, 10)
 shape = SubResource("CircleShape2D_x84tb")
 
 [node name="AttackTimer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

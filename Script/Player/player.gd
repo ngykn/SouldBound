@@ -1,13 +1,18 @@
 class_name Player extends CharacterBody2D
 
-@onready var animation_manager = $AnimationPlayer
-@onready var collision_shape: CollisionShape2D = $CollisionShape2D
+signal cutscene_movement_finished
+
+@onready var animation_manager := $AnimationPlayer
+@onready var collision_shape := $CollisionShape2D
+@onready var interaction_area := $InteractionArea
 
 enum MoveMode {
 	PLAYER,
 	CUTSCENE
 }
 
+var can_interact := false
+var current_npc : NPC = null
 var move_mode : MoveMode = MoveMode.PLAYER
 
 const WALK_SPEED := 100
@@ -22,7 +27,18 @@ var cutscene_target := Vector2.ZERO
 var cutscene_finished := false
 
 func _ready():
+	interaction_area.npc_entered.connect(_handle_interaction_area.bind("entered"))
+	interaction_area.npc_exited.connect(_handle_interaction_area.bind("exited"))
 	camera = get_viewport().get_camera_2d()
+
+
+func _unhandled_key_input(event):
+	if !move_mode == MoveMode.PLAYER:
+		return
+
+	if Input.is_action_just_pressed("interact"):
+		_handle_interaction()
+
 
 func _physics_process(delta):
 	match move_mode:
@@ -38,11 +54,23 @@ func _physics_process(delta):
 		_clamp_to_camera()
 
 	animation_manager.change_animation(velocity)
+# =========================
+# PUBLIC API
+# =========================
 
-# =========================
-# PLAYER MOVEMENT
-# =========================
-func _handle_player_movement():
+
+func start_cutscene_move(target_pos: Vector2): ## Player Cutscene.
+	move_mode = MoveMode.CUTSCENE
+	cutscene_target = target_pos
+	cutscene_finished = false
+# ========================
+# INTERNAL
+# ========================
+
+func _handle_player_movement(): ##Player movement
+	if !GameState.input_enabled:
+		return
+	
 	var input_dir := Vector2(
 		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
 		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
@@ -54,29 +82,54 @@ func _handle_player_movement():
 
 	move_input = input_dir.normalized() * speed
 
-# =========================
-# CUTSCENE MOVEMENT
-# =========================
-func start_cutscene_move(target_pos: Vector2):
-	move_mode = MoveMode.CUTSCENE
-	cutscene_target = target_pos
-	cutscene_finished = false
 
-func _handle_cutscene_movement():
+func _handle_cutscene_movement(): ##Cutscene movement
 	var dir := cutscene_target - global_position
 
 	if dir.length() <= STOP_DISTANCE:
 		move_input = Vector2.ZERO
 		move_mode = MoveMode.PLAYER
 		cutscene_finished = true
+		emit_signal("cutscene_movement_finished")
 		return
 
 	move_input = dir.normalized() * CUTSCENE_SPEED
 
-# =========================
-# CAMERA CLAMP
-# =========================
-func _clamp_to_camera():
+
+func _handle_interaction_area(npc : NPC, mode : String) -> void:
+	match mode:
+		"entered":
+			current_npc = npc
+			can_interact = true
+		"exited":
+			current_npc = null
+			can_interact = false
+		_:
+			printerr("_handle_interaction error:")
+
+
+func _handle_interaction() -> void: ##Player -> NPC Interaction
+	if !current_npc:
+		return
+
+	_face_direction(current_npc.global_position - global_position)
+	current_npc.face_direction(global_position - current_npc.global_position)
+	_handle_npc_dialogue()
+
+func _handle_npc_dialogue() -> void:
+	if !current_npc:
+		return
+	
+	current_npc.start_dialogue()
+	await current_npc.dialogue_ended
+	current_npc = null
+
+
+func _face_direction(direction : Vector2) -> void:
+	animation_manager.change_animation(direction)
+
+
+func _clamp_to_camera(): ##Camera Clamp
 	if camera == null:
 		camera = get_viewport().get_camera_2d()
 		if camera == null:
