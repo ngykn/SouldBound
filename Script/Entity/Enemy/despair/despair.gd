@@ -162,6 +162,7 @@ func _handle_death() -> void:
 		await GlobalFunction.dialogue_ended
 
 	animation_player.play("death")
+	GlobalReferences.morality -= 10
 	emit_signal("dead")
 
 func _on_hurtbox_hurt(entity):

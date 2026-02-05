@@ -4,6 +4,7 @@ signal used_item(item : String)
 
 @onready var focus = $Focus
 @onready var texture_button = $TextureButton
+@onready var buton_sfx = $"../../../../../ButtonSFX"
 
 var occupied := false
 var current_item : String = ""
@@ -16,9 +17,9 @@ func _ready():
 	mouse_entered.connect(_on_focus.bind(true))
 	mouse_exited.connect(_on_focus.bind(false))
 
-################
+#--------------#
 # PUBLIC API   #
-################
+#--------------#
 func update_item(item : String, arrange : bool = false) -> void:
 	if !GlobalReferences.inventory_items.has(item) or occupied:
 		printerr("Item Not Found: " + item)
@@ -39,6 +40,8 @@ func update_item(item : String, arrange : bool = false) -> void:
 func _use_item():
 	if i.size() == 0:
 		return
+
+	buton_sfx.play()
 
 	if i[2]:
 		emit_signal("used_item", current_item)

@@ -133,5 +133,5 @@ func text_animation_ratio(text : Array[String], delay : float = 1.0) -> void:
 
 func tween_ratio(value) -> void:
 	var t = create_tween()
-	t.tween_property(text_label, "visible_ratio", value, 0.5)
+	t.tween_property(text_label, "visible_ratio", value,(text_label.text.length() * 0.05))
 	await t.finished

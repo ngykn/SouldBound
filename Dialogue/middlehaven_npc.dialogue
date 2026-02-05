@@ -84,7 +84,7 @@ do met_npcs.append("Aren")
 {{GlobalManager.player_name}} : Someone told me to come here.
 ???? : I know.
 ???? : Aren.
-{{GlobalManager.player_name}} : …Devika.
+{{GlobalManager.player_name}} : …{{GlobalManager.player_name}}.
 Aren : Right.
 {{GlobalManager.player_name}} : You were waiting?
 Aren : Yes.

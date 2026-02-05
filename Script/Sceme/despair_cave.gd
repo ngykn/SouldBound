@@ -20,6 +20,8 @@ func despair_defeated() -> void:
 	GlobalFunction.costumize_show_dialogue(preload("res://Dialogue/despair.dialogue"),"Hope")
 	await GlobalFunction.dialogue_ended
 	hope.queue_free()
+	NpcManager.hope_is_alive = false
+	end()
 
 func despair_vulnerable() -> void:
 	hope.dialogue_id = preload("res://Dialogue/despair.dialogue")
@@ -27,4 +29,4 @@ func despair_vulnerable() -> void:
 	GlobalFunction.costumize_show_dialogue(preload("res://Dialogue/despair.dialogue"),"despair_vulnerable")
 	
 func end() -> void:
-	TransitionManager.change_scene(self,"res://UI/main_menu.tscn")
+	TransitionManager.change_scene(self,"res://Scene/ending.tscn")

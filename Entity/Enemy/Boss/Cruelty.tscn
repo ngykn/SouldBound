@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bt7khv16b41gg"]
+[gd_scene load_steps=33 format=3 uid="uid://bt7khv16b41gg"]
 
 [ext_resource type="Script" path="res://Script/Entity/Enemy/Cruelty/CrueltyV2.gd" id="1_5qvrf"]
 [ext_resource type="Texture2D" uid="uid://dbsqvjfsatrfp" path="res://Place Holder Art/Enemy/Cruelty/Idle-Sheet.png" id="1_hjbsh"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dxv3be0cngkig" path="res://Place Holder Art/Enemy/Cruelty/Death-Sheet.png" id="6_hpdf0"]
 [ext_resource type="AudioStream" uid="uid://dcwdniaxhfefx" path="res://Assets/BGM/SFX/axe-slash-1-106748.mp3" id="8_b544i"]
 [ext_resource type="AudioStream" uid="uid://ciup6w8j5v3cr" path="res://Assets/BGM/SFX/powerful-ground-impact-355967.mp3" id="10_a4pvu"]
+[ext_resource type="AudioStream" uid="uid://18simmixygg0" path="res://Assets/BGM/SFX/ough-47202.wav" id="12_gqg2f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v7cto"]
 shader = ExtResource("1_jqnmt")
@@ -642,6 +643,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HurtSFX:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_d6pxq"]
 resource_name = "hurt"
@@ -669,6 +682,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HurtSFX:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3duml"]
@@ -759,5 +784,10 @@ shape = SubResource("CapsuleShape2D_cdx7m")
 
 [node name="AttackSfx" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_a4pvu")
+bus = &"SFX"
+
+[node name="HurtSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_gqg2f")
+bus = &"SFX"
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]

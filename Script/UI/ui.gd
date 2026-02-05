@@ -1,8 +1,10 @@
 class_name UI extends Control
 
 @onready var player_life : float = GlobalManager.player_life
-@onready var life_bar : TextureProgressBar = $CanvasLayer/MarginContainer/Health/TextureProgressBar
+@onready var life_bar : TextureProgressBar = $CanvasLayer/MarginContainer/VBoxContainer/Health/TextureProgressBar
 @onready var inventory = $CanvasLayer/Inventory
+@onready var main_objectives = $CanvasLayer/MarginContainer/VBoxContainer/MainObjectives
+
 
 func _unhandled_key_input(event):
 	if event.is_action_pressed("inventory"):

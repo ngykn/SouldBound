@@ -1,7 +1,9 @@
 class_name Apathy extends CharacterBody2D
 
-signal vulnerable
 signal wave_finished(count : int)
+
+signal vulnerable
+signal dead
 
 @export var id : String
 
@@ -11,16 +13,19 @@ signal wave_finished(count : int)
 @export var attack_loop_count : int = 5
 @export var attack_cooldown : float = 0.5
 
+@onready var animation_player = $AnimationPlayer
 @onready var attack_timer = $AttackTimer
+@onready var hurtbox = $Hurtbox
 @onready var collision_shape = $CollisionShape2D
-
-var state : String = "idle"
-var is_vulnerable : bool = false
 @onready var sprite = $Sprite2D
+
+var is_vulnerable : bool = false
+var is_dead : bool = false
 
 func _ready():
 	if GlobalReferences.killed_enemy.has(id):
 		queue_free()
+
 
 # =========================
 # PUBLIC API
@@ -68,10 +73,17 @@ func _handle_vulnerable() -> void:
 		return
 
 	is_vulnerable = true
+	hurtbox.hurt.connect(_die)
+
 	collision_shape.set_deferred("disabled", true)
-	sprite.modulate = Color('#ffffff77')
+	sprite.modulate = Color('#ffffff6c')
+
 	GlobalReferences.killed_enemy.append(id)
 	emit_signal("vulnerable")
 
-func _die() -> void:
-	queue_free()
+func _die(entity : Node2D) -> void:
+	if is_vulnerable and !is_dead:
+		animation_player.play("death")
+		is_dead = true
+		GlobalReferences.morality -= 10
+		emit_signal("dead")

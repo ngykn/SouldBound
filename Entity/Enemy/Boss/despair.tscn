@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c5dps8akg11dd"]
+[gd_scene load_steps=26 format=3 uid="uid://c5dps8akg11dd"]
 
 [ext_resource type="Script" path="res://Script/Entity/Enemy/despair/despair.gd" id="1_hm0xj"]
 [ext_resource type="Texture2D" uid="uid://cok06q5xiu0eb" path="res://Assets/Entities/Enemy/Despair/Idle-Sheet.png" id="2_2w1im"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://xw4m64fhwhvs" path="res://Assets/Entities/Enemy/Despair/Death-Sheet.png" id="3_j1yjq"]
 [ext_resource type="Texture2D" uid="uid://dc3osfrrjnpjf" path="res://Assets/Entities/Enemy/Hands.png" id="4_cqodj"]
 [ext_resource type="PackedScene" uid="uid://cmisl0n0u57mt" path="res://Overlap/hurtbox.tscn" id="5_s5464"]
+[ext_resource type="AudioStream" uid="uid://dic5j70xadi3u" path="res://Assets/BGM/SFX/ghoulish-monster-43874.wav" id="7_r0k28"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4lqgf"]
 shader = ExtResource("2_7krvp")
@@ -65,6 +66,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_bw8t6"]
 resource_name = "death"
@@ -112,6 +125,18 @@ tracks/3/path = NodePath("CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -505,5 +530,9 @@ enemy_groups = Array[String](["blade"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CapsuleShape2D_bw6w7")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_r0k28")
+bus = &"SFX"
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]

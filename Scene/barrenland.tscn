@@ -2359,9 +2359,11 @@ button_pressed = true
 [node name="SFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_hmvh0")
 autoplay = true
+bus = &"BGM"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_73ldj")
+bus = &"BGM"
 
 [connection signal="pressed" from="CanvasLayer/Control/MarginContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="vulnerable" from="Apathy" to="." method="_on_apathy_vulnerable"]

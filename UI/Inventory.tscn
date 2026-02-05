@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvt86bcaibdma"]
+[gd_scene load_steps=10 format=3 uid="uid://dvt86bcaibdma"]
 
 [ext_resource type="Texture2D" uid="uid://bggsurugk5ucl" path="res://Assets/UI/RectangleBox_96x96.png" id="1_apwjr"]
 [ext_resource type="Texture2D" uid="uid://r4bojj2ub1s4" path="res://Assets/UI/TopPatternPanel_01_33x15.png" id="2_imnv5"]
 [ext_resource type="Script" path="res://Script/UI/Inventory.gd" id="2_wy2ww"]
 [ext_resource type="PackedScene" uid="uid://bbpjj5rrih5c0" path="res://UI/inventoryslot.tscn" id="4_qrpdg"]
+[ext_resource type="AudioStream" uid="uid://gnb2jhfl16py" path="res://Assets/BGM/SFX/obtain-001-340300.wav" id="5_84emj"]
+[ext_resource type="AudioStream" uid="uid://bywnl5ag3mnwf" path="res://Assets/BGM/button-press-382713.mp3" id="6_1i18s"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8uqub"]
 texture = ExtResource("1_apwjr")
@@ -137,3 +139,11 @@ layout_mode = 2
 
 [node name="slot16" parent="MarginContainer/MarginContainer/VBoxContainer/Slots" instance=ExtResource("4_qrpdg")]
 layout_mode = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_84emj")
+bus = &"SFX"
+
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_1i18s")
+bus = &"SFX"

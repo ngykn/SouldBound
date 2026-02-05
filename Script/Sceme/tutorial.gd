@@ -66,7 +66,8 @@ func _movement_tutorial(delta) -> void:
 		tween_progress(25)
 		camera.follow(player)
 		current_tutorial = tutorial_list.INTERACT
-
+		ui.main_objectives.completed_objective("Roam around")
+		GlobalFunction.costumize_show_dialogue(preload("res://Dialogue/Tutorial.dialogue"),"go_to_npc")
 
 func _interaction_tutorial() -> void:
 	if !current_tutorial == tutorial_list.INTERACT:
@@ -74,7 +75,7 @@ func _interaction_tutorial() -> void:
 
 	tween_progress(50)
 	current_tutorial = tutorial_list.ATTACK
-
+	ui.main_objectives.completed_objective("Interact with the people")
 
 func _inventory_tutorial(item) -> void:
 	if item != "Health":
@@ -83,6 +84,7 @@ func _inventory_tutorial(item) -> void:
 	tween_progress(70)
 	current_tutorial = tutorial_list.ATTACK
 	ui.show_inventory()
+	ui.main_objectives.completed_objective("Open your Inventory & take the life potion")
 	GlobalFunction.costumize_show_dialogue(preload("res://Dialogue/Tutorial.dialogue"),"second_trainer_interaction")
 
 
@@ -94,6 +96,7 @@ func _attack_tutorial() -> void:
 	if dummy_life == 0:
 		current_tutorial = tutorial_list.END
 		tween_progress(100)
+		ui.main_objectives.completed_objective("Attack the dummy 5x")
 		_tutorial_finished()
 
 

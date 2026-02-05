@@ -2,7 +2,7 @@ extends Node
 
 var inventory : Array[String] = []
 var killed_enemy : Array[String]= []
-
+var morality := 0
 var inventory_items : Dictionary = {
 	"Health" : [
 		preload("res://Assets/UI/Item/HealthNormal.png"),

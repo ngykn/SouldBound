@@ -1,6 +1,7 @@
 ~ mc_awoke
 {{GlobalManager.player_name}} : Where... is this?
 {{GlobalManager.player_name}} : ...
+do ui.main_objectives.add_objective("Explore the unknown area")
 => END
 
 ~ the_strange_man
@@ -43,6 +44,7 @@
 ???? : Watch.
 ???? : Move.
 ???? : Endure.
+do ui.main_objectives.add_objective("Defeat Apathy")
 => END
 
 ~ apathy_intro

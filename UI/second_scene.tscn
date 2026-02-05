@@ -62,6 +62,7 @@ text = "Randomize"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_fuibv")
 autoplay = true
+bus = &"BGM"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Randomize" to="." method="_on_randomize_pressed"]

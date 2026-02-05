@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://c11errhlttwlj"]
+[gd_scene load_steps=12 format=3 uid="uid://c11errhlttwlj"]
 
 [ext_resource type="Script" path="res://Script/Entity/Enemy/apathy.gd" id="1_h4p1o"]
 [ext_resource type="PackedScene" uid="uid://c6qaogatqrkqk" path="res://Object/apathy_orb.tscn" id="2_dy6sb"]
 [ext_resource type="Texture2D" uid="uid://5ren8pwnuyv1" path="res://Assets/Entities/Enemy/Apathy/Apathy Idle.png" id="3_8ejqh"]
 [ext_resource type="Texture2D" uid="uid://c4u65gudmywve" path="res://Assets/Entities/Enemy/Apathy/Apathy DEath.png" id="4_b53iq"]
+[ext_resource type="PackedScene" uid="uid://cmisl0n0u57mt" path="res://Overlap/hurtbox.tscn" id="5_e7bj0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8gfhb"]
 radius = 6.0
@@ -136,6 +137,8 @@ _data = {
 "death": SubResource("Animation_t7qnb")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xk4w6"]
+
 [node name="Apathy" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 4
@@ -151,6 +154,7 @@ flip_h = true
 hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 y_sort_enabled = true
 position = Vector2(0, 8)
 shape = SubResource("CapsuleShape2D_8gfhb")
@@ -164,3 +168,13 @@ libraries = {
 autoplay = "Idle"
 
 [node name="AtatckAnimation" type="AnimationPlayer" parent="."]
+
+[node name="Hurtbox" parent="." instance=ExtResource("5_e7bj0")]
+collision_layer = 4
+collision_mask = 2
+enemy_groups = Array[String](["blade"])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+visible = false
+shape = SubResource("CapsuleShape2D_xk4w6")
+debug_color = Color(0.996078, 0, 0.211765, 0.419608)

@@ -11,7 +11,8 @@ var _have_met_apathy := false
 func _ready() -> void:
 	super._ready()
 	await TransitionManager.scene_transition_finished
-	GlobalFunction.costumize_show_dialogue(load("res://Dialogue/chapter_one.dialogue"),"mc_awoke")
+	await GlobalFunction.costumize_show_dialogue(load("res://Dialogue/chapter_one.dialogue"),"mc_awoke")
+	ui.main_objectives.add_objective("Explore the unknown area")
 	#strange_man_area.player_entered.connect(_strange_man_cutscene)
 	#apathy_area.player_entered.connect(_apathy_cutscene)
 
@@ -24,6 +25,8 @@ func _strange_man_cutscene() -> void:
 	await get_tree().create_timer(1).timeout
 	player._handle_interaction()
 	_have_met_strange_man = true
+	ui.main_objectives.completed_objective("Explore the unknown area")
+
 
 func _apathy_cutscene() -> void:
 	if _have_met_apathy:
@@ -47,6 +50,7 @@ func _on_npc_dialogue_ended() -> void:
 	TransitionManager.fade_out()
 
 func _on_apathy_vulnerable():
+	ui.main_objectives.completed_objective("Defeat Apathy")
 	$ExitPoint/ExitPoint.set_collision_disabled(false)
 
 func _on_button_pressed():
