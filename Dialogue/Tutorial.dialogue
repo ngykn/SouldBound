@@ -62,7 +62,7 @@ do ui.main_objectives.add_objective("Open your Inventory & take the life potion"
 Narrator: If you need to check what you’re carrying—[wait=0.3]
 	Pause for a moment.
 
-Narrator: Press ESC to open your inventory.
+Narrator: Press I to open your inventory.
 => END
 
 ~ second_trainer_interaction

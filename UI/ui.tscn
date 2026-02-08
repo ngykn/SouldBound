@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://btidq6wnbga24"]
+[gd_scene load_steps=14 format=3 uid="uid://btidq6wnbga24"]
 
 [ext_resource type="Texture2D" uid="uid://bqx8ul1tiw6vq" path="res://Assets/UI/ValueBar_128x16.png" id="1_3abu3"]
 [ext_resource type="Script" path="res://Script/UI/ui.gd" id="1_m3066"]
@@ -8,8 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://dvt86bcaibdma" path="res://UI/Inventory.tscn" id="6_e3wvx"]
 [ext_resource type="Script" path="res://Script/System/MainObjectiveSystem.gd" id="6_tdqkr"]
 [ext_resource type="AudioStream" uid="uid://pv7s2n7nixe5" path="res://Assets/BGM/SFX/game-level-complete-143022.wav" id="7_6s15y"]
+[ext_resource type="Texture2D" uid="uid://3mem0q7xrpw" path="res://Assets/UI/lineLight15.png" id="7_8thtw"]
+[ext_resource type="Script" path="res://Script/UI/Pause.gd" id="7_p7gk2"]
+[ext_resource type="Texture2D" uid="uid://fw45c8nsi145" path="res://Assets/UI/lineLight11.png" id="7_y3ayx"]
+[ext_resource type="Texture2D" uid="uid://c3d64548pqciy" path="res://Assets/UI/lineLight13.png" id="8_aua1t"]
+[ext_resource type="Texture2D" uid="uid://iykqtfqlj4bp" path="res://Assets/UI/lineLight17.png" id="8_dgiis"]
 
 [node name="UI" type="Control" groups=["ui"]]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -88,11 +94,67 @@ layout_mode = 2
 bbcode_enabled = true
 fit_content = true
 
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Pause" type="Panel" parent="CanvasLayer/MarginContainer"]
+visible = false
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("7_p7gk2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/Pause"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -135.0
+offset_top = -82.5
+offset_right = 135.0
+offset_bottom = 82.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/Pause/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "PAUSE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Music" type="CheckBox" parent="CanvasLayer/MarginContainer/Pause/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+theme_override_icons/checked = ExtResource("7_y3ayx")
+theme_override_icons/unchecked = ExtResource("8_aua1t")
+text = "Music"
+
+[node name="SFX" type="CheckBox" parent="CanvasLayer/MarginContainer/Pause/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+theme_override_icons/checked = ExtResource("7_8thtw")
+theme_override_icons/unchecked = ExtResource("8_dgiis")
+text = "Sound Effects"
+
 [node name="Inventory" parent="CanvasLayer" instance=ExtResource("6_e3wvx")]
 visible = false
 size_flags_vertical = 4
 mouse_filter = 1
 
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="CanvasLayer"]
+initial_position = 2
+size = Vector2i(252, 100)
+ok_button_text = "Yes"
+dialog_text = "Are you sure you want to quit?"
+cancel_button_text = "No"
+
 [node name="ObjectiveSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_6s15y")
 bus = &"SFX"
+
+[connection signal="toggled" from="CanvasLayer/MarginContainer/Pause/VBoxContainer/Music" to="CanvasLayer/MarginContainer/Pause" method="_on_bgm_toggled"]
+[connection signal="toggled" from="CanvasLayer/MarginContainer/Pause/VBoxContainer/SFX" to="CanvasLayer/MarginContainer/Pause" method="_on_sfx_toggled"]

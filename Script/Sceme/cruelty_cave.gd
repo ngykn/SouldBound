@@ -14,7 +14,7 @@ func _ready():
 		cruelty.queue_free()
 		compassion.queue_free()
 		return
-		
+
 	cruelty.dead.connect(_on_cruelty_dead)
 
 func _on_area_cut_scene_player_entered():
@@ -29,21 +29,22 @@ func _on_area_cut_scene_player_entered():
 	
 	GlobalFunction.costumize_show_dialogue(preload("res://Dialogue/cruelty_cave.dialogue"))
 	await GlobalFunction.dialogue_ended
+	ui.main_objectives.add_objective("Defeat Cruelty & Save Compassion")
 	cruelty.start()
 
 func _on_cruelty_dead():
+	ui.main_objectives.completed_objective("Defeat Cruelty & Save Compassion")
 	await get_tree().process_frame
 	GameState.input_enabled = false
 	cruelty_dead = true
 	
 	GlobalFunction.disable_layer($TileMap,"Cage")
-	
 	compassion.go_to(player.global_position)
 	await compassion.follow_finished
 	
 	GlobalFunction.costumize_show_dialogue(preload("res://Dialogue/cruelty_cave.dialogue"),"compassion_rescued")
 	await GlobalFunction.dialogue_ended
-	
+	ui.main_objectives.completed_objective("Save Compassion")
 	await TransitionManager.fade_in()
 	compassion.queue_free()
 	await TransitionManager.fade_out()

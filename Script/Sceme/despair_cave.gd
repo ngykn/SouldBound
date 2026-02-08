@@ -7,6 +7,8 @@ extends Scene
 
 func _ready():
 	super._ready()
+	ui.inventory._update_inventory("Sword")
+	ui.inventory._update_inventory("Dash Ring")
 	camera.lock_at(room_center.global_position)
 	despair.vulnerable.connect(despair_vulnerable)
 	despair.dead.connect(despair_defeated)
@@ -14,6 +16,7 @@ func _ready():
 	await TransitionManager.scene_transition_finished
 	GlobalFunction.costumize_show_dialogue(preload("res://Dialogue/despair.dialogue"),"pre_fight_despair")
 	await GlobalFunction.dialogue_ended
+	ui.main_objectives.add_objective("Defeat Despair")
 	despair.active = true
 
 func despair_defeated() -> void:
@@ -24,6 +27,7 @@ func despair_defeated() -> void:
 	end()
 
 func despair_vulnerable() -> void:
+	ui.main_objectives.completed_objective("Defeat Despair")
 	hope.dialogue_id = preload("res://Dialogue/despair.dialogue")
 	hope.dialogue_title = "spared_despair"
 	GlobalFunction.costumize_show_dialogue(preload("res://Dialogue/despair.dialogue"),"despair_vulnerable")

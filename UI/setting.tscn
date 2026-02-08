@@ -45,7 +45,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 theme_override_icons/checked = ExtResource("3_hvbti")
 theme_override_icons/unchecked = ExtResource("4_2t2ov")
-text = "Music Background"
+text = "Music"
 
 [node name="SFX" type="CheckBox" parent="Panel/CenterContainer/VBoxContainer"]
 layout_mode = 2

@@ -1,6 +1,9 @@
 extends Node
 
-var DATA := {"Hatdog" : 123}
+################
+# UNUSE SCRIPT #
+################
+var DATA := {"DATA" : 123}
 var password := "secret123"
 
 func _notification(what) -> void:

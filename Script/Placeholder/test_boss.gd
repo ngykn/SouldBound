@@ -10,7 +10,6 @@ var current_enemy = ""
 func _ready():
 	super._ready()
 	camera.lock_at($Marker2D.global_position)	
-	
 	ui.inventory._update_inventory("Sword")
 	ui.inventory._update_inventory("Dash Ring")
 	var viewport_size := get_viewport_rect().size
