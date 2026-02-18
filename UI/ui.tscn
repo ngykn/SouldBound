@@ -236,3 +236,4 @@ bus = &"SFX"
 [connection signal="toggled" from="CanvasLayer/MarginContainer/Pause/VBoxContainer/SFX/SFX" to="CanvasLayer/MarginContainer/Pause" method="_on_sfx_toggled"]
 [connection signal="drag_ended" from="CanvasLayer/MarginContainer/Pause/VBoxContainer/SFX/SFXSlider" to="CanvasLayer/MarginContainer/Pause" method="_on_sfx_slider_drag_ended"]
 [connection signal="value_changed" from="CanvasLayer/MarginContainer/Pause/VBoxContainer/SFX/SFXSlider" to="CanvasLayer/MarginContainer/Pause" method="_on_sfx_slider_value_changed"]
+[connection signal="use" from="CanvasLayer/Inventory" to="." method="_on_inventory_use"]

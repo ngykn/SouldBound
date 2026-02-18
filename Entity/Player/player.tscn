@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://cutottkhcgg5b" path="res://Assets/Entities/Player/Walk_Down.png" id="17_rvx8m"]
 [ext_resource type="Texture2D" uid="uid://ckulaxmoe37we" path="res://Assets/Entities/Player/Walk_Side.png" id="18_bnf5h"]
 [ext_resource type="PackedScene" uid="uid://2ypuew1kwj08" path="res://Overlap/hitbox.tscn" id="18_ripo8"]
+[ext_resource type="Texture2D" uid="uid://54fuk6364vb1" path="res://Assets/Environment/Shadows.png" id="19_3wo2e"]
 [ext_resource type="Texture2D" uid="uid://dlioqk64ohb34" path="res://Assets/Entities/Player/Walk_Up.png" id="19_h5bxq"]
 [ext_resource type="AudioStream" uid="uid://bux55wyryp8iw" path="res://Assets/BGM/sword-sound-2-36274.mp3" id="22_vmloh"]
 [ext_resource type="AudioStream" uid="uid://5harr0jopago" path="res://Assets/BGM/female-hurt-2-94301.mp3" id="23_pgtqr"]
@@ -1195,12 +1196,9 @@ _data = {
 "RESET": SubResource("Animation_e6hbe")
 }
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7gsbw"]
-load_path = "res://.godot/imported/Shadows.png-85e9335e0935504148442e8d42cd5198.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_upe6s"]
-atlas = SubResource("CompressedTexture2D_7gsbw")
-region = Rect2(0, 104, 32, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hgvw"]
+atlas = ExtResource("19_3wo2e")
+region = Rect2(0, 108, 32, 8)
 
 [sub_resource type="Gradient" id="Gradient_nhf0e"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -1252,7 +1250,7 @@ libraries = {
 
 [node name="Shadows" type="Sprite2D" parent="."]
 position = Vector2(0, 16)
-texture = SubResource("AtlasTexture_upe6s")
+texture = SubResource("AtlasTexture_8hgvw")
 
 [node name="Light" type="PointLight2D" parent="."]
 enabled = false

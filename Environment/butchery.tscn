@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bfsyfk4fk2in5"]
 
 [ext_resource type="PackedScene" uid="uid://cxj6veq6r53bh" path="res://Environment/station_template.tscn" id="1_xr3vt"]
-[ext_resource type="Texture2D" uid="uid://c6cgrm2oiem5g" path="res://Assets/Environment/Stations/Butchery_04.png" id="2_n34r5"]
+[ext_resource type="Texture2D" uid="uid://c6cgrm2oiem5g" path="res://Assets/Environment/Stations/Cooking Station/Butchery/Butchery_04.png" id="2_n34r5"]
 
 [node name="Station" instance=ExtResource("1_xr3vt")]
 

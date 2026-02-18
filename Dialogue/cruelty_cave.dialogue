@@ -33,6 +33,9 @@ Compassion : Just wounded beyond his own understanding.
 Compassion : Thank you.
 Compassion : For choosing restraint
 Compassion : where he chose force.
+Compassion: Here.
+do ui.inventory._update_inventory("Health")
+Compassion: You should heal yourself.
 => END
 
 ~ player_defeated

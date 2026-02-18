@@ -40,3 +40,8 @@ func cancel_confirmation_dialog() -> void:
 
 func quit_game() -> void:
 	get_tree().quit()
+
+
+func _on_inventory_use(Item):
+	if Item == "Health":
+		GlobalManager.player_life = clamp(GlobalManager.player_life + 30, 0, 100)

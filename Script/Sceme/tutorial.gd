@@ -39,7 +39,7 @@ func _ready():
 	
 	
 	GameState.input_enabled = false
-	await TransitionManager.scene_transition_finished
+	#await TransitionManager.scene_transition_finished
 	camera.lock_at(player.global_position)
 	await get_tree().create_timer(1).timeout
 	GlobalFunction.costumize_show_dialogue(preload("res://Dialogue/Tutorial.dialogue"))
