@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://7hxqmsg2d3by"]
+[gd_scene load_steps=12 format=3 uid="uid://7hxqmsg2d3by"]
 
 [ext_resource type="Script" path="res://Script/Sceme/test_enemy_scene.gd" id="1_ok4ph"]
 [ext_resource type="PackedScene" uid="uid://drlfriyhb4cre" path="res://Entity/Player/player.tscn" id="2_f8wh8"]
@@ -9,8 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://cv0meg87b44st" path="res://Object/Dummy.tscn" id="7_3tq5j"]
 [ext_resource type="PackedScene" uid="uid://dk0fy8e4fsle8" path="res://Object/chest.tscn" id="8_a8nrl"]
 [ext_resource type="PackedScene" uid="uid://byc687cnpvwf7" path="res://Object/chest_placer.tscn" id="9_w8rym"]
-[ext_resource type="PackedScene" uid="uid://bw3o41ok1rphs" path="res://Archer.tscn" id="10_5xxvw"]
-[ext_resource type="PackedScene" uid="uid://dnqsmkynmsqeq" path="res://Entity/Enemy/Basic Enemy/skele.tscn" id="10_37rar"]
 [ext_resource type="PackedScene" uid="uid://7exd4j0d4cre" path="res://Entity/Enemy/Basic Enemy/goblin.tscn" id="11_ep1cj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pcr6c"]
@@ -68,14 +66,11 @@ id = 4
 position = Vector2(-200, 8)
 id = 5
 
-[node name="Skele" parent="." instance=ExtResource("10_37rar")]
-position = Vector2(-72, 264)
-
 [node name="Goblin" parent="." instance=ExtResource("11_ep1cj")]
 position = Vector2(-144, 130)
 
-[node name="enemy" parent="." instance=ExtResource("10_5xxvw")]
-position = Vector2(-80, 31)
+[node name="Goblin2" parent="." instance=ExtResource("11_ep1cj")]
+position = Vector2(-88, 176)
 
 [connection signal="dead" from="Player" to="." method="_player_dead"]
 

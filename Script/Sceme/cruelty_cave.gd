@@ -55,4 +55,3 @@ func _on_cruelty_dead():
 	GameState.input_enabled = true
 	GlobalReferences.map_sequence += 1
 	ui.main_objectives.add_objective("Locate Despair")
-	ui.main_objectives.completed_objective("Locate Despair")

@@ -36,6 +36,6 @@ func despair_vulnerable() -> void:
 	hope.dialogue_id = preload("res://Dialogue/despair.dialogue")
 	hope.dialogue_title = "spared_despair"
 	GlobalFunction.costumize_show_dialogue(preload("res://Dialogue/despair.dialogue"),"despair_vulnerable")
-	
+
 func end() -> void:
 	TransitionManager.change_scene(self,"res://Scene/ending.tscn")

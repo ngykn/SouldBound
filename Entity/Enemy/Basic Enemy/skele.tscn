@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://cvp46tb1uixe6" path="res://Assets/BGM/SFX/Skeleton_Death.mp3" id="10_21l0f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gwd2b"]
+resource_local_to_scene = true
 shader = ExtResource("1_7lhyw")
 shader_parameter/Enabled = false
 shader_parameter/tint = Color(1, 1, 1, 1)

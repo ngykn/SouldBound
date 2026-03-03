@@ -88,6 +88,7 @@ func _on_hurtbox_hurt(entity) -> void:
 		
 		GameState.coin += 20
 		effects(20)
+
 		await movement_animation.animation_finished
 		await get_tree().create_timer(3).timeout
 		queue_free()

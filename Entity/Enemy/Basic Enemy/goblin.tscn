@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://18simmixygg0" path="res://Assets/BGM/SFX/ough-47202.wav" id="10_b7rn1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ntnxu"]
+resource_local_to_scene = true
 shader = ExtResource("2_o3xbr")
 shader_parameter/Enabled = false
 shader_parameter/tint = Color(1, 1, 1, 1)
@@ -187,7 +188,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_g28oi"]
